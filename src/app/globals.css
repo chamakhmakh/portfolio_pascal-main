@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+
+    /* Custom portfolio colors */
+    --color-highlight: 258 90% 66%;
+    --color-highlight-foreground: 0 0% 100%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+
+    /* Custom portfolio colors */
+    --color-highlight: 258 90% 66%;
+    --color-highlight-foreground: 0 0% 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom font settings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  /* Smooth scrolling */
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply container mx-auto px-4 md:px-8 py-16 md:py-24;
+  }
+
+  .section-heading {
+    @apply text-4xl md:text-5xl font-bold mb-6 md:mb-10 relative;
+  }
+
+  .section-heading:after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-16 h-1 bg-highlight mt-2;
+  }
+
+  /* Custom cursor styles */
+  .custom-cursor {
+    @apply fixed pointer-events-none z-50 w-8 h-8 rounded-full mix-blend-difference bg-white transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-150 ease-out;
+  }
+
+  /* Project cards */
+  .project-card {
+    @apply bg-card rounded-xl p-5 overflow-hidden transition-all duration-300 hover:shadow-xl;
+  }
+
+  /* Navbar items */
+  .nav-item {
+    @apply relative px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors;
+  }
+
+  .nav-item-active {
+    @apply text-foreground;
+  }
+
+  .nav-item-active:after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-highlight;
+  }
+
+  /* Button highlight variant */
+  .btn-highlight {
+    @apply bg-highlight text-highlight-foreground hover:bg-highlight/90;
+  }
+
+  /* 3D canvas container */
+  .canvas-container {
+    @apply w-full h-full;
+  }
+}
+
+/* Animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem; /* 32px */
+  padding-right: 2rem; /* 32px */
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2.5rem; /* 40px */
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 3rem; /* 48px */
+    padding-right: 3rem;
+  }
+}
