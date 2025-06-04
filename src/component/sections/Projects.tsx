@@ -265,7 +265,7 @@ const Projects = () => {
         >
           {filteredProjects.map((project) => (
             <Card key={project.id} className="project-card overflow-hidden">
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-48 overflow-hidden rounded-md">
                 <Image
                   src={project.image}
                   alt={project.title}

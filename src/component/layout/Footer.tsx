@@ -62,7 +62,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Connect</h3>
             <div className="flex space-x-4">
               <Link
-                href=""
+                href="https://github.com/chamakhmakh?tab=repositories"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
@@ -70,7 +70,7 @@ const Footer = () => {
                 <Github size={20} />
               </Link>
               <Link
-                href=""
+                href="https://www.instagram.com/farouk_bensaid_/?__pwa=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"

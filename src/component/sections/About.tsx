@@ -1,13 +1,12 @@
 "use client";
 
-import Link from "next/link";
 // import Model3D from "../3d/Model3D";
-import { Button } from "../ui/Button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/Tabs";
-import { Code, Download, Lightbulb, Users } from "lucide-react";
+import { Code, Lightbulb, Users } from "lucide-react";
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(_ScrollTrigger);
@@ -79,7 +78,13 @@ export default function About() {
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-highlight/80 to-highlight/20 blur-xl opacity-20 -z-10" />
             <div className="h-full w-full rounded-2xl overflow-hiddne border border-border/30 p-2 bg-card/50 backdrop-blur-sm">
               <div className="h-full w-full relatve rounded-xl overflow-hidden">
-                {/* <Model3D /> */}
+                <Image
+                  src="/about.png"
+                  alt="farouk"
+                  fill
+                  className="object-cover rounded-2xl"
+                  priority
+                />
               </div>
             </div>
 
@@ -110,15 +115,6 @@ export default function About() {
                   technologies, I create responsive, performant, and accessible
                   web applications that solve real-world problems.
                 </p>
-
-                <div className="pt-2">
-                  <Button asChild variant="outline" size="sm">
-                    <Link href="" target="_blank" download>
-                      <Download className="mr-2 h-4 w-4" />
-                      Download Resume
-                    </Link>
-                  </Button>
-                </div>
               </TabsContent>
 
               <TabsContent value="education" className="space-y-4 mt-6">
@@ -129,9 +125,7 @@ export default function About() {
                     <p className="text-sm text-muted-foreground">
                       Bachelor&apos;s Degree in Software Engineering
                     </p>
-                    <p className="text-sm text-muted-foreground">
-                      2021-Present
-                    </p>
+                    <p className="text-sm text-muted-foreground">Present</p>
                   </div>
 
                   <div className="bg-muted/30 p-4 rounded-lg">

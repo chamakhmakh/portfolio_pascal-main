@@ -22,7 +22,7 @@ const Contact = () => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -30,40 +30,40 @@ const Contact = () => {
   const infoRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  try {
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formState),
-    });
-
-    if (response.ok) {
-      setIsSubmitted(true);
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
       });
 
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 3000);
-    } else {
-      console.error("Failed to send message");
-    }
-  } catch (error) {
-    console.error("An error occurred:", error);
-  }
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
 
-  setIsSubmitting(false);
-};
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 3000);
+      } else {
+        console.error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+
+    setIsSubmitting(false);
+  };
 
   useEffect(() => {
     if (isSubmitted && successRef.current) {
@@ -194,7 +194,7 @@ const Contact = () => {
                   >
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="subject">Subject</Label>
+                        <Label htmlFor="subject">Name</Label>
                         <Input
                           id="name"
                           name="name"
