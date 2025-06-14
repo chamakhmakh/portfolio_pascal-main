@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"               # or "out" if you use `next export`
+  functions = "netlify/functions" # where your contact.ts lives
+
+[functions]
+  node_bundler = "esbuild"
