@@ -35,7 +35,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/.netlify/functions/contact", {
+      const response = await fetch("/.netlify/function/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
