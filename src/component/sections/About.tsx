@@ -15,7 +15,9 @@ if (typeof window !== "undefined") {
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -32,7 +34,43 @@ export default function About() {
         duration: 0.8,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 90%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      imageRef.current,
+      {
+        x: -100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      tabsRef.current,
+      {
+        x: 100,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.4,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 90%",
         },
       }
     );
@@ -40,17 +78,17 @@ export default function About() {
     gsap.fromTo(
       contentRef.current,
       {
-        y: 50,
+        x: 100,
         opacity: 0,
       },
       {
-        y: 0,
+        x: 0,
         opacity: 1,
         duration: 0.8,
-        delay: 0.2,
+        delay: 0.6,
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 90%",
         },
       }
     );
@@ -62,22 +100,20 @@ export default function About() {
       ref={sectionRef}
       className="py-16 md:py-24 realtive overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-highlight/5 rounded-full blur-3xl" />
-
       <div className="container mx-auto px-4">
         <div ref={headingRef} className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold">About Me</h2>
           <div className="mt-2 h-1 w-20 bg-highlight mx-auto" />
         </div>
 
-        <div
-          ref={contentRef}
-          className="grid md:grid-cols-2 gap-10 items-center"
-        >
+        <div className="grid md:grid-cols-2 gap-10 items-center">
           <div className="relative aspect-square max-w-md mx-auto md:mx-0">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-highlight/80 to-highlight/20 blur-xl opacity-20 -z-10" />
-            <div className="h-full w-full rounded-2xl overflow-hiddne border border-border/30 p-2 bg-card/50 backdrop-blur-sm">
-              <div className="h-full w-full relatve rounded-xl overflow-hidden">
+            <div
+              ref={imageRef}
+              className="h-full w-full rounded-2xl overflow-hidden border border-border/30 p-2 bg-card/50 backdrop-blur-sm hidden md:block"
+            >
+              <div className="h-full w-full relative rounded-xl overflow-hidden">
                 <Image
                   src="/about.png"
                   alt="farouk"
@@ -93,14 +129,18 @@ export default function About() {
           </div>
 
           <div className="space-y-6">
-            <Tabs defaultValue="personel" className="w-full">
+            <Tabs ref={tabsRef} defaultValue="personel" className="w-full">
               <TabsList className="grid grid-cols-3 w-full max-w-md">
                 <TabsTrigger value="personel">Personel</TabsTrigger>
                 <TabsTrigger value="education">Education</TabsTrigger>
                 <TabsTrigger value="values">Values</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="personel" className="space-y-4 mt-6">
+              <TabsContent
+                ref={contentRef}
+                value="personel"
+                className="space-y-4 mt-6"
+              >
                 <h3 className="text-3xl font-semibold">
                   Crafting Digial Experiences
                 </h3>

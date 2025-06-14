@@ -62,11 +62,11 @@ const education = [
     institution: "ESSGITECH",
     period: "2024 – Present",
     description:
-      "Pursuing advanced studies in software engineering with a focus on full-stack web development, system design, and project-based learning.",
+      "A comprehensive academic program focused on software engineering principles, including full-stack web development, software architecture, and practical project implementation. Emphasis is placed on mastering both front-end and back-end technologies, collaborative development, and real-world problem solving.",
     courses: [
-      "Advanced Web Development",
-      "Design Patterns",
-      "DevOps & Deployment Pipelines",
+      "Software Architecture & Design Patterns",
+      "Database Systems & SQL Optimization",
+      "Data Structures & Algorithms",
     ],
   },
 ];

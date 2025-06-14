@@ -6,6 +6,11 @@ import Link from "next/link";
 import { ArrowDown, ChevronRight } from "lucide-react";
 import Model3D from "../3d/Model3D";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -17,81 +22,145 @@ const Hero = () => {
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
+    const pulse = gsap.fromTo(
+      sectionRef.current,
+      { boxShadow: "0 0 0px #b98aff" },
+      {
+        boxShadow: "0 0 60px #b98aff50",
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        paused: true,
+      }
+    );
+
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => pulse.play(),
+      onLeave: () => pulse.pause(),
+      onEnterBack: () => pulse.play(),
+      onLeaveBack: () => pulse.pause(),
+    });
+
     tl.fromTo(
       titleRef.current,
       {
-        y: 50,
+        x: -200,
         opacity: 0,
+        rotateZ: 10,
+        scale: 0.9,
       },
+      {
+        x: 0,
+        opacity: 1,
+        rotateZ: 0,
+        scale: 1,
+        duration: 1.5,
+        ease: "back.out(1.7)",
+      }
+    );
+
+    tl.fromTo(
+      headingRef.current,
+      {
+        x: -200,
+        opacity: 0,
+        rotateZ: 10,
+        scale: 0.9,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        rotateZ: 0,
+        scale: 1,
+        duration: 1.5,
+        ease: "back.out(1.7)",
+      }
+    );
+
+    tl.fromTo(
+      textRef.current,
+      { x: -200, opacity: 0, rotateZ: 10, scale: 0.9 },
+      {
+        x: 0,
+        opacity: 1,
+        rotateZ: 0,
+        scale: 1,
+        duration: 1.5,
+        ease: "back.out(1.7)",
+      }
+    );
+
+    tl.fromTo(
+      buttonRef.current,
+      { y: 40, opacity: 0 },
       {
         y: 0,
         opacity: 1,
         duration: 1,
+        onComplete: () => {
+          gsap.to(buttonRef.current, {
+            y: -3,
+            repeat: -1,
+            yoyo: true,
+            duration: 1.5,
+            ease: "sine.inOut",
+          });
+        },
       },
-      0
-    )
-      .fromTo(
-        headingRef.current,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        0.3
-      )
-      .fromTo(
-        textRef.current,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        0.6
-      )
-      .fromTo(
-        buttonRef.current,
-        {
-          y: 50,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        0.9
-      );
+      "-=0.5"
+    );
 
-    const handleMoouseMove = (e: MouseEvent) => {
-      if (!sectionRef.current) return;
+    gsap.fromTo(
+      ".spline-wrapper",
+      {
+        x: 200,
+        opacity: 0,
+        rotateZ: 10,
+        scale: 0.9,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        rotateZ: 0,
+        scale: 1,
+        duration: 1.5,
+        ease: "back.out(1.7)",
+        delay: 1,
+      }
+    );
 
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const xPos = (clientX / innerWidth - 0.5) * 20;
-      const yPos = (clientY / innerHeight - 0.5) * 20;
+    const isDesktop = window.innerWidth >= 1024;
 
-      gsap.to(headingRef.current, {
-        x: xPos,
-        y: yPos,
-        duration: 1,
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+      gsap.to(sectionRef.current, {
+        rotateX: -y,
+        rotateY: x,
+        transformPerspective: 1200,
+        transformOrigin: "center",
+        duration: 0.8,
         ease: "power2.out",
       });
     };
 
-    window.addEventListener("mousemove", handleMoouseMove);
+    if (isDesktop) {
+      window.addEventListener("mousemove", handleMouseMove);
+    }
 
     return () => {
-      window.removeEventListener("mousemove", handleMoouseMove);
+      if (isDesktop) {
+        window.removeEventListener("mousemove", handleMouseMove);
+      }
+      pulse.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  });
+  }, []);
 
   return (
     <section
@@ -143,9 +212,9 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hidden md:block h-[500px] w-full relative">
+        <div className="z-10 hidden md:block h-[500px] w-full relative">
           {/* 3D model */}
-          <Model3D />
+          <Model3D className="spline-wrapper" />
         </div>
       </div>
 
