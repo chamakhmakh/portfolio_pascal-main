@@ -7,7 +7,7 @@ const handler: Handler = async (event) => {
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: JSON.stringify({ message: "Method Not Allowed" }),
+      body: "Method Not Allowed",
     };
   }
 
@@ -31,13 +31,13 @@ const handler: Handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: "Email sent successfully!" }),
+      body: "Email sent successfully!",
     };
-  } catch (err) {
-    console.error("Email error:", err);
+  } catch (error) {
+    console.error(error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ message: "Failed to send email." }),
+      body: "Error sending email",
     };
   }
 };
