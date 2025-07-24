@@ -20,6 +20,7 @@ const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
     const pulse = gsap.fromTo(
