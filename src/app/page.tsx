@@ -27,14 +27,15 @@ export default function Home() {
           <Preloader />
         ) : (
           <>
-            <Header />
+            {/* <Header /> */}
             <main>
               {/* <Hero /> */}
               {/* <About /> */}
-              <Skills />
+              {/* <Skills />
               <Projects />
               <Experience />
-              <Contact />
+              <Contact /> */}
+              hello
             </main>
             <Footer />
           </>
