@@ -81,7 +81,10 @@ export default function Experience() {
   useEffect(() => {
     if (!sectionRef.current) return;
 
-    requestIdleCallback(() => {
+    // Use setTimeout to defer animations until DOM is stable
+    const timeout = setTimeout(() => {
+      if (!headingRef.current || !tabsRef.current) return;
+
       gsap.fromTo(
         headingRef.current,
         { y: 50, opacity: 0 },
@@ -111,19 +114,25 @@ export default function Experience() {
         }
       );
 
-      ScrollTrigger.batch(".experience-card", {
-        onEnter: (batch) =>
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.2,
-            ease: "power2.out",
-          }),
-        start: "top 80%",
-        once: true,
-      });
-    });
+      // Ensure elements are present
+      const cards = document.querySelectorAll(".experience-card");
+      if (cards.length > 0) {
+        ScrollTrigger.batch(cards, {
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              stagger: 0.2,
+              ease: "power2.out",
+            }),
+          start: "top 80%",
+          once: true,
+        });
+      }
+    }, 0);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
