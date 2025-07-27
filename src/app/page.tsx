@@ -1,14 +1,14 @@
 "use client";
 
 import Footer from "@/component/layout/Footer";
-import Header from "@/component/layout/Header";
+// import Header from "@/component/layout/Header";
 import Preloader from "@/component/Preloader";
 // import About from "@/component/sections/About";
-import Contact from "@/component/sections/Contact";
-import Experience from "@/component/sections/Experience";
+// import Contact from "@/component/sections/Contact";
+// import Experience from "@/component/sections/Experience";
 // import Hero from "@/component/sections/Hero";
-import Projects from "@/component/sections/Projects";
-import Skills from "@/component/sections/Skills";
+// import Projects from "@/component/sections/Projects";
+// import Skills from "@/component/sections/Skills";
 import ThemeProvider from "@/component/ThemeProvider";
 import { useEffect, useState } from "react";
 
