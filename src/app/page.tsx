@@ -3,7 +3,7 @@
 import Footer from "@/component/layout/Footer";
 import Header from "@/component/layout/Header";
 import Preloader from "@/component/Preloader";
-import About from "@/component/sections/About";
+// import About from "@/component/sections/About";
 import Contact from "@/component/sections/Contact";
 import Experience from "@/component/sections/Experience";
 // import Hero from "@/component/sections/Hero";
@@ -30,7 +30,7 @@ export default function Home() {
             <Header />
             <main>
               {/* <Hero /> */}
-              <About />
+              {/* <About /> */}
               <Skills />
               <Projects />
               <Experience />
