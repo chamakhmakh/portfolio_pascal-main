@@ -6,7 +6,7 @@ import Preloader from "@/component/Preloader";
 import About from "@/component/sections/About";
 import Contact from "@/component/sections/Contact";
 import Experience from "@/component/sections/Experience";
-import Hero from "@/component/sections/Hero";
+// import Hero from "@/component/sections/Hero";
 import Projects from "@/component/sections/Projects";
 import Skills from "@/component/sections/Skills";
 import ThemeProvider from "@/component/ThemeProvider";
@@ -29,7 +29,7 @@ export default function Home() {
           <>
             <Header />
             <main>
-              <Hero />
+              {/* <Hero /> */}
               <About />
               <Skills />
               <Projects />
