@@ -178,7 +178,7 @@ const Hero = () => {
             ref={titleRef}
             className="text-highlight font-medium tracking-wide"
           >
-            SOFTWARE ENGINNER
+            FRONTEND ENGINNER
           </p>
 
           <h1
